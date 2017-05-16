@@ -1,0 +1,40 @@
+* {
+	font-family: 'Raleway', sans-serif;
+}
+body.background {
+	background-image: url("../images/SquaresBackground.png");
+}
+
+div.transbox {
+  margin: 30px;
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.6;
+  filter: alpha(opacity=60); /* For IE8 and earlier */
+  min-height: 500px;
+}	
+
+h1 {
+	text-align: center;
+	font-size: 300%; 
+	font-weight: bold;	
+}
+
+button {
+	background-color: #FF65FD;
+	text-align: center;
+	height: 50%;
+  width: 25%;
+}
+
+.button.button-primary, button.button-primary, input[type="submit"].button-primary, input[type="reset"].button-primary, input[type="button"].button-primary {
+    color: #FFF;
+    background-color: #FF65FD;
+    border-color: #FF65FD;
+}
+
+img {
+    max-width: 100%;
+    width:304px;
+    height:228px
+}

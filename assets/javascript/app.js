@@ -11,12 +11,13 @@ window.onload = function() {
 
 	// ********* PAGE SETUP *****************************************************//
 	createButtons();
+	$('#pauseMessage').hide();
 
 	// ********* EVENT LISTENERs ************************************************//
 
 	// When the user clicks on a button, the page should grab 10 static, non-animated 
 	// gif images from the GIPHY API and place them on the page. 
-	$(".heros").on("click", function() {
+	$("#buttons").delegate(".heros","click", function() {
 	
 	  // Name of button created
 	  var searchTerm = $(this).attr("data-hero");
@@ -68,6 +69,7 @@ window.onload = function() {
 
         // Prepend the images to the previous images
         $("#images").prepend(heroFigure);
+        $('#pauseMessage').show();
 
 
       }); // end of ajax call with done function
@@ -77,6 +79,7 @@ window.onload = function() {
 	// // When the user clicks on the clear button, the gifs disappear
 	$("#clear").on("click", function() {
 		$("#images").empty();
+		$('#pauseMessage').hide();
 	}); // End of clear button click
 
 
@@ -97,11 +100,23 @@ window.onload = function() {
 
 	}); // End of giphy images click
 
+// Add a form to your page takes the value from a user input box and adds it into 
+ // your `topics` array.
+ 	$('#addNewButton').on('click', function() {
+ 		var newHero = $('#newHero').val();
+ 		topics.push(newHero);
+ 		createButtons();
+ 		$('#newHero').val("");
+ 	})
+
 
 // ********* FUNCTIONS ******************************************************//
 
  	// Your app should take the topics in this array and create buttons in your HTML.
  	function createButtons() {
+
+ 		$('#buttons').empty();
+
  		for(var i = 0; i < topics.length; i++) {
 
  			// create button label
@@ -124,8 +139,7 @@ window.onload = function() {
 
 
 
- // Add a form to your page takes the value from a user input box and adds it into 
- // your `topics` array. Then make a function call that takes each topic in the array 
+ // Then make a function call that takes each topic in the array 
  // remakes the buttons on the page.
 
 

@@ -39,6 +39,14 @@ button {
   font-size: 70%;
 }
 
+.topButtons {
+  background-color: black;
+  color: white;
+  margin: 0.5em;
+  width: 70%;
+  font-weight: bold;
+}
+
 img {
     max-width: 100%;
     width:304px;
@@ -46,10 +54,7 @@ img {
     padding: 0.5em;
 }
 
-#clear {
-  margin: 0.5em;
-  background: white;
-  padding: 0.5em;
-  width: 70%;
-  font-weight: bold;
+#pauseMessage {
+  font-size: 145%;
 }
+

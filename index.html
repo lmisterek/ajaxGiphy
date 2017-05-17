@@ -44,12 +44,20 @@
       <h1>Get me some gifs!</h1>      
     </div>
   
-    <div class="row">
-        <div class="four columns"> <button id="clear"> Clear Images</button></div>
-        <div class="four columns">
-            
+    <div class="row container">
+        <div class="six columns">
+            <form>
+                   <label for="exampleEmailInput">Your hero</label>
+                  <textarea class="u-full-width" placeholder="Type the name of your favorite hero.  Then click on 'Add new Hero' to create a button for your hero. " id="newHero"></textarea>
+
+
+            </form>
         </div>
-        <div class="four columns"></div>
+        
+        <div class="six columns">
+          <button class= 'topButtons' id="addNewButton"> Add New Hero</button>
+          <button class = 'topButtons' id="clear"> Clear Images</button>
+        </div>
 
     </div> <!-- end of container -->
 
@@ -59,6 +67,8 @@
     
     <div id="buttons">
     </div>
+    <br>
+    <p id='pauseMessage'>You can click on the images to pause and re-start gif images.</p>
     <div id="images">
     </div>
 

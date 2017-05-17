@@ -4,7 +4,7 @@
 // Before you can make any part of our site work, you need to create an array of strings, 
 // each one related to a topic that interests you. Save it to a variable called `topics`. 
 var topics = ["Colbert", "Spiderman", "Superman", "Wonderwoman", "Batman", 
-				"Ironman", "hulk", "wolverine", "Thor" ];
+				"Ironman", "hulk", "Wolverine", "Thor" ];
 
 
 window.onload = function() {
@@ -16,13 +16,14 @@ window.onload = function() {
 
 	// When the user clicks on a button, the page should grab 10 static, non-animated 
 	// gif images from the GIPHY API and place them on the page. 
-	$("button").on("click", function() {
+	$(".heros").on("click", function() {
 	
 	  // Name of button created
-	  var searchTerm = $(this).attr("data-dance")
+	  var searchTerm = $(this).attr("data-hero");
+	  console.log(searchTerm);
 	  
 	  // Set a query string to find dance styles on the giphy api
-      var queryURL = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=" + searchTerm;
+      var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=dc6zaTOxFJmzC&tag=&limit=1";
 
       console.log(queryURL);
       
@@ -36,20 +37,32 @@ window.onload = function() {
       .done(function(response) {
 
         //  store the image url in a variable from the ajax response
-        var imageUrl = response.data.image_original_url;
+        var imageUrl = response.data[0].images.original.url;
+
+
+        // store the rating in a variable
+        var rating = response.data[0].rating;
+        console.log(response);
 
         // Grab the image from the html
         var heroImage = $("<img>");
 
         // Include the image attributes source and alt
         heroImage.attr("src", imageUrl);
-        heroImage.attr("alt", "dance image");
+        heroImage.attr("alt", "hero image");
 
         // Prepend the images to the previous images
         $("#images").prepend(heroImage);
+
+
       }); // end of ajax call with done function
 
 	}); // End of button click 
+
+	// // When the user clicks on the clear button, the gifs disappear
+	$("#clear").on("click", function() {
+		$("#images").empty();
+	}); // End of clear button click
 
 // Under every gif, display its rating (PG, G, so on). 
 
@@ -69,8 +82,9 @@ window.onload = function() {
 
  			// create button label
  			var button = $('<button>').html(topics[i]);
+ 			button.attr('class', 'heros');
 
- 			button.attr('data-dance', topics[i]);
+ 			button.attr('data-hero', topics[i]);
  			$('#buttons').append(button);
  		}
 

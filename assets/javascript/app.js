@@ -51,7 +51,7 @@ window.onload = function() {
         var heroCaption = $("<figcaption>");
 
         // Include the image attributes source and alt
-        heroImage.attr("src", static_imageUrl);
+        heroImage.attr("src", imageUrl);
         heroImage.attr("data-state", 'animate');
         heroImage.attr("data-animate", imageUrl);
         heroImage.attr("data-still", static_imageUrl);
@@ -83,7 +83,18 @@ window.onload = function() {
 // When the user clicks one of the still GIPHY images, the gif should animate. If 
 // the user clicks the gif again, it should stop playing.
 	$("#images").delegate(".heroImages", "click", function() {
-		console.log("yes!");
+		
+		var newState = changeState($(this).attr('data-state'));
+		$(this).attr('data-state', newState);
+
+		// Swap the image
+		if (newState == 'still') 
+			// Change the displayed image to the animated one
+			$(this).attr('src', $(this).attr('data-still'));
+		else
+			// Change the displayed image to the still one
+			$(this).attr('src', $(this).attr('data-animate'));
+
 	}); // End of giphy images click
 
 
@@ -102,6 +113,16 @@ window.onload = function() {
  		}
 
  	}; // end of createButtons function
+
+ 	// Change the state from animate to still or vice versa
+ 	function changeState(state) {
+ 		if (state == 'animate')
+ 			return 'still';
+ 		else
+ 			return 'animate';
+ 	}
+
+
 
  // Add a form to your page takes the value from a user input box and adds it into 
  // your `topics` array. Then make a function call that takes each topic in the array 

@@ -37,6 +37,8 @@ window.onload = function() {
         // Choose a random giphy from the selected
         var i = Math.floor(Math.random() * 101);  
         var imageUrl = response.data[i].images.original.url;
+        console.log(response.data[i]);
+        var static_imageUrl = response.data[i].images.original_still.url;
 
 
         // store the rating in a variable
@@ -49,8 +51,10 @@ window.onload = function() {
         var heroCaption = $("<figcaption>");
 
         // Include the image attributes source and alt
-        heroImage.attr("src", imageUrl);
+        heroImage.attr("src", static_imageUrl);
         heroImage.attr("data-state", 'animate');
+        heroImage.attr("data-animate", imageUrl);
+        heroImage.attr("data-still", static_imageUrl);
         heroImage.attr("alt", "hero image");
         heroImage.attr("class", "heroImages");
 

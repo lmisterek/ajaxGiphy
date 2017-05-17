@@ -4,7 +4,7 @@
 // Before you can make any part of our site work, you need to create an array of strings, 
 // each one related to a topic that interests you. Save it to a variable called `topics`. 
 var topics = ["Colbert", "Spiderman", "Superman", "Wonderwoman", "Batman", 
-				"Ironman", "hulk", "Wolverine", "Thor" ];
+				"Ironman", "Hulk", "Wolverine", "Thor" ];
 
 
 window.onload = function() {
@@ -20,13 +20,9 @@ window.onload = function() {
 	
 	  // Name of button created
 	  var searchTerm = $(this).attr("data-hero");
-	  console.log(searchTerm);
 	  
 	  // Set a query string to find dance styles on the giphy api
       var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=dc6zaTOxFJmzC&tag=&limit=100";
-
-
-      console.log(queryURL);
       
       // Complete an ajax call to GET super hero images
       $.ajax({
@@ -44,21 +40,30 @@ window.onload = function() {
 
 
         // store the rating in a variable
+        // Under every gif, display its rating (PG, G, so on). 
         var rating = response.data[i].rating;
 
-
-        // Grab the image from the html
+        // Create the figure, image, and figcaption html
+        var heroFigure = $("<figure>");
         var heroImage = $("<img>");
+        var heroCaption = $("<figcaption>");
 
         // Include the image attributes source and alt
         heroImage.attr("src", imageUrl);
+        heroImage.attr("data-state", 'animate');
         heroImage.attr("alt", "hero image");
+        heroImage.attr("class", "heroImages");
+
+        // Write the rating to the figcaption
+        heroCaption.html("Rating: " + rating);
+
+        // Append the caption to the image and the image to the figure
+        heroFigure.append(heroImage);
+        heroFigure.append(heroCaption);
+
 
         // Prepend the images to the previous images
-        $("#images").prepend(heroImage);
-
-        var rating = $('<p>').html("The rating is: " + rating);
-        $('#images').append(rating);
+        $("#images").prepend(heroFigure);
 
 
       }); // end of ajax call with done function
@@ -70,14 +75,12 @@ window.onload = function() {
 		$("#images").empty();
 	}); // End of clear button click
 
-// Under every gif, display its rating (PG, G, so on). 
-
-//    * This data is provided by the GIPHY API.
-//    * Only once you get images displaying with button 
-//    presses should you move on to the next step.
 
 // When the user clicks one of the still GIPHY images, the gif should animate. If 
 // the user clicks the gif again, it should stop playing.
+	$("#images").delegate(".heroImages", "click", function() {
+		console.log("yes!");
+	}); // End of giphy images click
 
 
 // ********* FUNCTIONS ******************************************************//

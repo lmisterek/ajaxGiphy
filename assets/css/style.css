@@ -20,27 +20,36 @@ h1 {
 	font-weight: bold;	
 }
 
-button {
-	background-color: #FF65FD;
-	text-align: center;
-	height: 50%;
-  width: 25%;
-}
+
 
 .button.button-primary, button.button-primary, input[type="submit"].button-primary, input[type="reset"].button-primary, input[type="button"].button-primary {
     color: #FFF;
     background-color: #FF65FD;
     border-color: #FF65FD;
+    height: 2em;
+}
+
+button {
+  background-color: #FF65FD;
+  text-align: center;
+  height: 60%;
+  width: 20%;
+  padding: 1em;
+  font-weight: bold;
+  font-size: 70%;
 }
 
 img {
     max-width: 100%;
     width:304px;
-    height:228px
+    height:228px;
+    padding: 0.5em;
 }
 
 #clear {
-  margin: 5em;
-  text-align: center;
+  margin: 0.5em;
   background: white;
+  padding: 0.5em;
+  width: 70%;
+  font-weight: bold;
 }

@@ -23,7 +23,8 @@ window.onload = function() {
 	  console.log(searchTerm);
 	  
 	  // Set a query string to find dance styles on the giphy api
-      var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=dc6zaTOxFJmzC&tag=&limit=1";
+      var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=dc6zaTOxFJmzC&tag=&limit=100";
+
 
       console.log(queryURL);
       
@@ -37,12 +38,14 @@ window.onload = function() {
       .done(function(response) {
 
         //  store the image url in a variable from the ajax response
-        var imageUrl = response.data[0].images.original.url;
+        // Choose a random giphy from the selected
+        var i = Math.floor(Math.random() * 101);  
+        var imageUrl = response.data[i].images.original.url;
 
 
         // store the rating in a variable
-        var rating = response.data[0].rating;
-        console.log(response);
+        var rating = response.data[i].rating;
+
 
         // Grab the image from the html
         var heroImage = $("<img>");
@@ -53,6 +56,9 @@ window.onload = function() {
 
         // Prepend the images to the previous images
         $("#images").prepend(heroImage);
+
+        var rating = $('<p>').html("The rating is: " + rating);
+        $('#images').append(rating);
 
 
       }); // end of ajax call with done function

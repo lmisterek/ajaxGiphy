@@ -4,7 +4,7 @@
 // Before you can make any part of our site work, you need to create an array of strings, 
 // each one related to a topic that interests you. Save it to a variable called `topics`. 
 var topics = ["Colbert", "Spiderman", "Superman", "Wonderwoman", "Batman", 
-				"Ironman", "Hulk", "Wolverine", "Thor" ];
+				"Ironman", "Hulk", "Wolverine", "Thor", "Black Widow" ];
 
 
 window.onload = function() {
@@ -34,11 +34,11 @@ window.onload = function() {
       // Promise gets instantiated.  After the call has been made, create an image and add it to 
       .done(function(response) {
 
+      	console.log(response);
         //  store the image url in a variable from the ajax response
         // Choose a random giphy from the selected
         var i = Math.floor(Math.random() * 101);  
         var imageUrl = response.data[i].images.original.url;
-        console.log(response.data[i]);
         var static_imageUrl = response.data[i].images.original_still.url;
 
 
@@ -104,7 +104,12 @@ window.onload = function() {
  // your `topics` array.
  	$('#addNewButton').on('click', function() {
  		var newHero = $('#newHero').val();
+
+ 		if(newHero.length > 0)
  		topics.push(newHero);
+
+ 	// Then make a function call that takes each topic in the array 
+ 	// remakes the buttons on the page.
  		createButtons();
  		$('#newHero').val("");
  	})
@@ -139,8 +144,7 @@ window.onload = function() {
 
 
 
- // Then make a function call that takes each topic in the array 
- // remakes the buttons on the page.
+
 
 
 }; // end of window load
